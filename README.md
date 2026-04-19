@@ -60,8 +60,8 @@ A low-cost spatial scanning system built using a **VL53L0X Time-of-Flight sensor
 ---
 
 ## 👥 Contributors
-- Adreet Sarkar  
+- [Adreet Sarkar](https://github.com/Golden-Adreet)  
 - Alok Kumar Pandey  
 - Aman Kumar Patel  
 - Aman Upadhyay  
-- Anshuman Pandey  
+- [Anshuman Pandey](https://github.com/anshuman1947)
