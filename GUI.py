@@ -251,7 +251,8 @@ class mapping_gui:
             self.ax.clear()
             self.ax.set_theta_zero_location('N')
             self.ax.set_theta_direction(-1)
-            self.ax.set_rlim(0, 200)
+            self.ax.set_rlim(0, 1000)
+
             self.ax.scatter(self.d2_theta_vals, self.d2_r_vals, s=10)
             self.canvas.draw()
 
@@ -268,8 +269,40 @@ class mapping_gui:
 
         def draw():
             self.ax.clear()
-            self.ax.scatter(self.xs, self.ys, self.zs, s=5)
-            self.canvas.draw()
+
+            # Axis limits
+            self.ax.set_xlim(-1000, 1000)
+            self.ax.set_ylim(-1000, 1000)
+            self.ax.set_zlim(-1000, 1000)
+
+            # Compute color values
+            r = np.sqrt(np.array(self.xs)**2 +
+                        np.array(self.ys)**2 +
+                        np.array(self.zs)**2)
+
+            # Scatter plot
+            sc = self.ax.scatter(self.xs, self.ys, self.zs,
+                                s=5, c=r, cmap='rainbow',vmin=0,vmax=1000)
+
+            fig = self.ax.get_figure()
+
+            # ✅ SAFE COLORBAR HANDLING
+            if not hasattr(self.ax, "_cbar") or self.ax._cbar is None:
+                self.ax._cbar = fig.colorbar(sc, ax=self.ax,
+                                            label="Distance from origin(in mm)")
+            else:
+                try:
+                    self.ax._cbar.update_normal(sc)
+                except Exception:
+                    # fallback if matplotlib got confused
+                    try:
+                        self.ax._cbar.remove()
+                    except Exception:
+                        pass
+                    self.ax._cbar = fig.colorbar(sc, ax=self.ax,
+                                                label="Distance from origin")
+
+            self.canvas.draw_idle()   # smoother than draw()
 
         self.root.after(0, draw)
 
