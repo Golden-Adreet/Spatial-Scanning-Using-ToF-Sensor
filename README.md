@@ -8,7 +8,7 @@ A low-cost spatial scanning system built using a **VL53L0X Time-of-Flight sensor
 
 A short demonstration of the system performing real-time spatial scanning:
 
-👉 [Watch Demo Video](./Demo_video.mp4)
+[Watch Demo Video](./Demo_video)
 
 ---
 
