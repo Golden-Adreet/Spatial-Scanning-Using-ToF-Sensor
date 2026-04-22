@@ -4,7 +4,16 @@ A low-cost spatial scanning system built using a **VL53L0X Time-of-Flight sensor
 
 ---
 
+## 🎥 Demo Video
+
+A short demonstration of the system performing real-time spatial scanning:
+
+👉 [Watch Demo Video](./Demo_video.mp4)
+
+---
+
 ## 🚀 Features
+
 - 📏 Accurate distance measurement using ToF technology  
 - 🔄 Multi-axis scanning (servo + stepper integration)  
 - 🧠 Real-time data acquisition via Arduino  
@@ -16,50 +25,92 @@ A low-cost spatial scanning system built using a **VL53L0X Time-of-Flight sensor
 
 ## 🛠️ Tech Stack
 
-**Hardware:**
+### Hardware
 - Arduino Uno  
 - VL53L0X ToF Sensor  
 - Servo Motor (SG90)  
-- Stepper Motor (28BYJ-48 + ULN2003)  
+- Stepper Motor (28BYJ-48 + ULN2003 Driver)  
 
-**Software:**
+### Software
 - Arduino IDE (C/C++)  
-- Python (Tkinter, PySerial, Matplotlib)  
+- Python  
+  - Tkinter (GUI)  
+  - PySerial (communication)  
+  - Matplotlib (visualization)  
 
 ---
 
 ## ⚙️ How it Works
-1. The ToF sensor emits infrared pulses and measures return time to calculate distance.  
-2. Servo and stepper motors sweep the sensor across angles.  
-3. Arduino collects distance data and sends it to Python via serial communication.  
-4. Python processes and visualizes the scanned data in real time.  
+
+1. The ToF sensor emits infrared light pulses and measures the return time to calculate distance.  
+2. A servo motor controls vertical scanning angles.  
+3. A stepper motor controls horizontal rotation.  
+4. Arduino collects distance data and sends it to the computer via serial communication.  
+5. A Python GUI reads this data and visualizes it in real time.  
 
 ---
 
 ## 📊 Output
-- 1D distance measurements  
-- 2D scanning maps  
-- Basic 3D spatial representation  
+
+- **1D Scanning** → Distance vs angle  
+- **2D Mapping** → Surface scan (polar/grid)  
+- **Basic 3D Representation** → Point cloud approximation  
 
 ---
 
+## 📂 Project Structure
+```
+├── Arduino/
+│ └── tof_scanner.ino
+├── Python/
+│ ├── gui.py
+│ ├── serial_handler.py
+│ └── visualization.py
+├── demo_video.mp4
+├── README.md
+```
+---
+
+## 🔧 Setup & Usage
+
+### 1. Hardware Setup
+- Connect VL53L0X sensor via I2C to Arduino  
+- Connect servo motor to PWM pin  
+- Connect stepper motor via ULN2003 driver  
+
+### 2. Arduino Code
+- Upload the `.ino` file using Arduino IDE  
+
+### 3. Python Setup
+
+Install required libraries:
+
+```bash
+pip install pyserial matplotlib
+```
+
 ## 🔮 Future Improvements
-- Higher resolution ToF sensors (e.g., 8×8 array)  
-- Upgrade to ESP32 for wireless communication  
-- Improved 3D point cloud visualization  
+
+- Higher resolution ToF sensors (e.g., 8×8 array sensors)  
+- Wireless communication using ESP32  
+- Advanced 3D point cloud visualization  
 - Mobile app integration (Flutter)  
+- SLAM-based mapping  
 
 ---
 
 ## 📌 Applications
+
 - Robotics navigation & obstacle detection  
 - Autonomous systems  
 - AR/VR depth sensing  
 - Indoor mapping  
+- Low-cost LiDAR alternative  
 
 ---
 
 ## 👥 Contributors
+
 - [Adreet Sarkar](https://github.com/Golden-Adreet)  
 - Alok Kumar Pandey  
 - Aman Kumar Patel  
